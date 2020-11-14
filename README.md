@@ -16,3 +16,7 @@ The rest of the script simply iterates over files and subdirectories and convert
 ## Usage:
     > python gib2u.py TARGET
 target can be a file or a folder
+
+## Testing
+Run tests with the following command while in the project's root folder:
+> python -m unittest discover tests/ -t ..
