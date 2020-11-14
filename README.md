@@ -2,6 +2,9 @@
 Convert Hebrew gibberish to UTF-8
 For example, will convert `ùìåí çðåê` to `שלום חנוך`
 
+## Requirements:
+python 3.8+
+
 ## Quick Explanation
 Encoding issues have plagued Hebrew filenames for years.<br/>
 A quick Python line can convert to the all useful UTF-8:
