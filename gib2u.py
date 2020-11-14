@@ -11,7 +11,6 @@ from argparse import ArgumentParser
 
 
 __author__ = "Ben Baryo"
-__version__ = "0.3"
 
 
 class GhebbrishConverter:
@@ -31,10 +30,10 @@ class GhebbrishConverter:
         start_time = time()
         if os.path.isdir(self.target):
             self.convert_entire_directory(self.target)
-        else:
-            self.convert_and_rename(self.target)
+        self.convert_and_rename(self.target)
+
         if not self.quiet:
-            print(f"[!] Conversion of {self.converted_items}/{self.all_items} took {time() - start_time} seconds")
+            print(f"[!] Conversion of {self.converted_items}/{self.all_items} took ~{time() - start_time:.3f} seconds")
 
     @staticmethod
     def convert_gibberish_to_utf8(s):
@@ -52,8 +51,10 @@ class GhebbrishConverter:
         """
         Convert and rename a target file/directory name from Hebrew gibberish to UTF-8
         """
-        full_path, target = os.path.split(full_name_target)
+        self.all_items += 1
+        full_path, target = os.path.split(os.path.abspath(full_name_target))
         if not target == (converted := self.convert_gibberish_to_utf8(target)):
+            self.converted_items += 1
             os.rename(full_name_target, f"{full_path}/{converted}")
             if not self.quiet:
                 print(f"[+] Renamed {target} to {converted}")
